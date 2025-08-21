@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Local - Perfil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    <span>Marketplace Local</span>
+                </div>
+                <div class="header-actions">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="cart-btn" onclick="openCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Page -->
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Meu Perfil</h2>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h3>Informações Pessoais</h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="profileName">Nome Completo</label>
+                            <input type="text" id="profileName" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="profilePhone">Telefone</label>
+                            <input type="tel" id="profilePhone" placeholder="(11) 99999-9999">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileEmail">E-mail</label>
+                            <input type="email" id="profileEmail" placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileAddress">Endereço</label>
+                            <input type="text" id="profileAddress" placeholder="Rua, número">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileNeighborhood">Bairro</label>
+                            <input type="text" id="profileNeighborhood" placeholder="Seu bairro">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileReference">Ponto de Referência</label>
+                            <input type="text" id="profileReference" placeholder="Próximo ao...">
+                        </div>
+                        <button type="button" onclick="saveProfile()" class="save-btn">
+                            <i class="fas fa-save"></i>
+                            Salvar Informações
+                        </button>
+                    </form>
+                </div>
+
+                <div class="profile-section">
+                    <h3>Preferências</h3>
+                    <div class="preferences">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="saveAddressDefault">
+                            <span class="checkmark"></span>
+                            Salvar endereço como padrão
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="notificationsEnabled">
+                            <span class="checkmark"></span>
+                            Receber notificações de ofertas
+                        </label>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>Ações</h3>
+                    <div class="profile-actions">
+                        <button onclick="clearProfile()" class="clear-btn">
+                            <i class="fas fa-trash"></i>
+                            Limpar Dados
+                        </button>
+                        <a href="admin.html" class="admin-btn">
+                            <i class="fas fa-cog"></i>
+                            Painel Admin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Início</span>
+        </a>
+        <a href="catalog.html" class="nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Catálogo</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Carrinho</span>
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

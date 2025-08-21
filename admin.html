@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Local - Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    <span>Painel Admin</span>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Page -->
+    <section class="admin-page">
+        <div class="container">
+            <div class="admin-header">
+                <h2>Painel Administrativo</h2>
+                <p>Gerencie os produtos do seu marketplace</p>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="showTab('products')">
+                    <i class="fas fa-box"></i>
+                    Produtos
+                </button>
+                <button class="tab-btn" onclick="showTab('analytics')">
+                    <i class="fas fa-chart-bar"></i>
+                    Estatísticas
+                </button>
+            </div>
+
+            <!-- Products Tab -->
+            <div class="tab-content active" id="productsTab">
+                <div class="admin-actions">
+                    <button class="add-product-btn" onclick="showAddProductForm()">
+                        <i class="fas fa-plus"></i>
+                        Adicionar Produto
+                    </button>
+                </div>
+
+                <!-- Add Product Form -->
+                <div class="add-product-form" id="addProductForm" style="display: none;">
+                    <h3>Adicionar Novo Produto</h3>
+                    <form id="newProductForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName">Nome do Produto</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCategory">Categoria</label>
+                                <select id="productCategory" required>
+                                    <option value="comida">Comida</option>
+                                    <option value="eletronicos">Eletrônicos</option>
+                                    <option value="roupas">Roupas</option>
+                                    <option value="casa">Casa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productPrice">Preço (R$)</label>
+                                <input type="number" id="productPrice" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productOriginalPrice">Preço Original (R$)</label>
+                                <input type="number" id="productOriginalPrice" step="0.01">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">URL da Imagem</label>
+                            <input type="url" id="productImage">
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Descrição</label>
+                            <textarea id="productDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productRating">Avaliação (1-5)</label>
+                                <input type="number" id="productRating" min="1" max="5" step="0.1" value="5">
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="productInStock" checked>
+                                    <span class="checkmark"></span>
+                                    Em estoque
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="productFeatured">
+                                    <span class="checkmark"></span>
+                                    Produto em destaque
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" onclick="addProduct()" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                Salvar Produto
+                            </button>
+                            <button type="button" onclick="hideAddProductForm()" class="cancel-btn">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Products List -->
+                <div class="products-list" id="adminProductsList">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-content" id="analyticsTab">
+                <div class="analytics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalProducts">0</h3>
+                            <p>Total de Produtos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="featuredProducts">0</h3>
+                            <p>Produtos em Destaque</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="inStockProducts">0</h3>
+                            <p>Produtos em Estoque</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="categories-stats">
+                    <h3>Produtos por Categoria</h3>
+                    <div id="categoriesStats">
+                        <!-- Category stats will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
