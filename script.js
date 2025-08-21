@@ -40,86 +40,85 @@ function initializeApp() {
   }
 }
 
-// Product Management
 function loadProducts() {
-  const savedProducts = localStorage.getItem("marketplace_products")
-  if (savedProducts) {
-    products = JSON.parse(savedProducts)
-  } else {
-    // Default products
-    products = [
-      {
-        id: "1",
-        name: "Hambúrguer Artesanal",
-        price: 25.9,
-        originalPrice: 29.9,
-        image: "/delicious-hamburger.png",
-        category: "comida",
-        rating: 4.8,
-        description: "Hambúrguer artesanal com carne 180g, queijo, alface, tomate e molho especial",
-        inStock: true,
-        featured: true,
-      },
-      {
-        id: "2",
-        name: "Smartphone Samsung",
-        price: 899.99,
-        originalPrice: 1199.99,
-        image: "/samsung-smartphone-display.png",
-        category: "eletronicos",
-        rating: 4.5,
-        description: 'Smartphone Samsung Galaxy com tela de 6.5", 128GB, câmera tripla',
-        inStock: true,
-        featured: true,
-      },
-      {
-        id: "3",
-        name: "Pizza Margherita",
-        price: 32.9,
-        image: "/margherita-pizza.png",
-        category: "comida",
-        rating: 4.9,
-        description: "Pizza tradicional com molho de tomate, mussarela e manjericão fresco",
-        inStock: true,
-        featured: true,
-      },
-      {
-        id: "4",
-        name: "Fone Bluetooth",
-        price: 159.9,
-        originalPrice: 199.9,
-        image: "/bluetooth-headphones.png",
-        category: "eletronicos",
-        rating: 4.3,
-        description: "Fone de ouvido Bluetooth com cancelamento de ruído e bateria de 30h",
-        inStock: true,
-        featured: false,
-      },
-      {
-        id: "5",
-        name: "Açaí com Frutas",
-        price: 18.5,
-        image: "/acai-bowl-fruits.png",
-        category: "comida",
-        rating: 4.7,
-        description: "Açaí cremoso com banana, morango, granola e mel",
-        inStock: true,
-        featured: false,
-      },
-      {
-        id: "6",
-        name: "Camiseta Básica",
-        price: 39.9,
-        image: "/basic-t-shirt.png",
-        category: "roupas",
-        rating: 4.2,
-        description: "Camiseta 100% algodão, disponível em várias cores",
-        inStock: true,
-        featured: false,
-      },
-    ]
-    localStorage.setItem("marketplace_products", JSON.stringify(products))
-  }
+  // Remova a linha que lê do localStorage
+  // const savedProducts = localStorage.getItem("marketplace_products")
+
+  // O bloco 'if' e 'else' não é mais necessário,
+  // pois não estamos lendo do localStorage.
+  // Apenas defina os produtos diretamente.
+  products = [{
+      id: "1",
+      name: "Brahma Lata 350ml",
+      price: 5.5,
+      originalPrice: 6.5,
+      image: "assets/img/cervejaslata/brahmalata350ml.png",
+      category: "Cerveja",
+      rating: 5.0,
+      description: "Refrescante, dourada e com espuma cremosa, a Brahma na lata é a companhia perfeita para qualquer momento. Seu sabor leve e equilibrado traz a harmonia ideal entre malte e lúpulo, tornando cada gole suave e prazeroso. Gelada, realça ainda mais sua personalidade marcante, sendo presença garantida em churrascos, festas e encontros com amigos. Prática e fácil de transportar, a lata preserva todo o frescor e aroma da cerveja, garantindo que a experiência Brahma seja sempre do primeiro ao último gole",
+      inStock: true,
+      featured: true,
+    },
+    {
+      id: "2",
+      name: "Brahma Duplo Malte Lata 350ml",
+      price: 7.5,
+      originalPrice: 8.5,
+      image: "assets/img/cervejaslata/brahmaduplomalte350ml.png",
+      category: "Cerveja",
+      rating: 4.5,
+      description: 'Smartphone Samsung Galaxy com tela de 6.5", 128GB, câmera tripla',
+      inStock: true,
+      featured: true,
+    },
+    {
+      id: "3",
+      name: "Pizza Margherita",
+      price: 32.9,
+      image: "/margherita-pizza.png",
+      category: "comida",
+      rating: 4.9,
+      description: "Pizza tradicional com molho de tomate, mussarela e manjericão fresco",
+      inStock: true,
+      featured: true,
+    },
+    {
+      id: "4",
+      name: "Fone Bluetooth",
+      price: 159.9,
+      originalPrice: 199.9,
+      image: "/bluetooth-headphones.png",
+      category: "eletronicos",
+      rating: 4.3,
+      description: "Fone de ouvido Bluetooth com cancelamento de ruído e bateria de 30h",
+      inStock: true,
+      featured: false,
+    },
+    {
+      id: "5",
+      name: "Açaí com Frutas",
+      price: 18.5,
+      image: "/acai-bowl-fruits.png",
+      category: "comida",
+      rating: 4.7,
+      description: "Açaí cremoso com banana, morango, granola e mel",
+      inStock: true,
+      featured: false,
+    },
+    {
+      id: "6",
+      name: "Camiseta Básica",
+      price: 39.9,
+      image: "/basic-t-shirt.png",
+      category: "roupas",
+      rating: 4.2,
+      description: "Camiseta 100% algodão, disponível em várias cores",
+      inStock: true,
+      featured: false,
+    },
+  ]
+  // Remova a linha que salva no localStorage
+  // localStorage.setItem("marketplace_products", JSON.stringify(products))
 }
 
 function loadFeaturedProducts() {
@@ -218,10 +217,7 @@ function createProductCard(product) {
                         <i class="fas fa-cart-plus"></i>
                         Adicionar
                     </button>
-                    <button class="whatsapp-btn" onclick="orderSingleProduct('${product.id}')">
-                        <i class="fab fa-whatsapp"></i>
-                        Pedir
-                    </button>
+                    
                 </div>
             </div>
         </div>
@@ -546,19 +542,11 @@ function sendWhatsAppOrder() {
 
   const customerData = {
     name: document.getElementById("customerName").value,
-    phone: document.getElementById("customerPhone").value,
-    address: document.getElementById("customerAddress").value,
-    neighborhood: document.getElementById("customerNeighborhood").value,
-    reference: document.getElementById("customerReference").value,
-    notes: document.getElementById("customerNotes").value,
   }
 
   // Create WhatsApp message
-  let message = `🛒 *NOVO PEDIDO - MARKETPLACE LOCAL*\n\n`
+  let message = `🛒 *NOVO PEDIDO - Turno Zero*\n\n`
   message += `👤 *Cliente:* ${customerData.name}\n`
-  message += `📱 *Telefone:* ${customerData.phone}\n`
-  message += `📍 *Endereço:* ${customerData.address}\n`
-  message += `🏘️ *Bairro:* ${customerData.neighborhood}\n`
   if (customerData.reference) {
     message += `📌 *Referência:* ${customerData.reference}\n`
   }
@@ -582,7 +570,7 @@ function sendWhatsAppOrder() {
   message += `Obrigado pela preferência! 🙏`
 
   // WhatsApp business number (replace with actual number)
-  const whatsappNumber = "5511999999999" // Replace with your WhatsApp Business number
+  const whatsappNumber = "5548996868430" // Replace with your WhatsApp Business number
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 
   // Open WhatsApp
@@ -615,13 +603,9 @@ function saveUserProfile() {
 function loadProfilePage() {
   const fields = [
     "profileName",
-    "profilePhone",
-    "profileEmail",
-    "profileAddress",
-    "profileNeighborhood",
-    "profileReference",
+    
   ]
-  const profileFields = ["name", "phone", "email", "address", "neighborhood", "reference"]
+  const profileFields = ["name"]
 
   fields.forEach((field, index) => {
     const element = document.getElementById(field)
@@ -647,11 +631,6 @@ function loadProfilePage() {
 function saveProfile() {
   const profileData = {
     name: document.getElementById("profileName").value,
-    phone: document.getElementById("profilePhone").value,
-    email: document.getElementById("profileEmail").value,
-    address: document.getElementById("profileAddress").value,
-    neighborhood: document.getElementById("profileNeighborhood").value,
-    reference: document.getElementById("profileReference").value,
     saveAddressDefault: document.getElementById("saveAddressDefault").checked,
     notificationsEnabled: document.getElementById("notificationsEnabled").checked,
   }
